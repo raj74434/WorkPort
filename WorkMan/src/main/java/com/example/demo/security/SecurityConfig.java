@@ -18,7 +18,7 @@ public class SecurityConfig {
 	http.csrf().disable()
 	.authorizeHttpRequests()
 	.antMatchers(HttpMethod.GET,"/say").permitAll()
-	.antMatchers(HttpMethod.POST,"/signUp").permitAll()
+	.antMatchers(HttpMethod.POST,"/user").permitAll()
 	.anyRequest().authenticated()
 	.and()
 	.formLogin() //  <-- this help in login from browser . It create a login page 

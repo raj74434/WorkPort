@@ -31,10 +31,9 @@ public class UserController {
 	
 	@GetMapping("/say")
 	@CrossOrigin
-	public Users  say() {
-		System.out.println("Method called");
-		Users us=ur.findByEmail("12").get();
-		return us ;
+	public ResponseEntity<String>  say() {
+		
+		return new ResponseEntity<String>("yeass it is called",HttpStatus.OK) ;
 	}
 	
 	@PostMapping("/user")
