@@ -18,7 +18,10 @@ import com.example.demo.models.Users;
 import com.example.demo.repository.UserRepo;
 import com.example.demo.service.UserServiceImpl;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @RestController
+
 public class UserController {
 	@Autowired
 	private UserServiceImpl usi;
@@ -35,13 +38,13 @@ public class UserController {
 	}
 	
 	@PostMapping("/user")
-	@CrossOrigin
+//	@CrossOrigin
 	public ResponseEntity<Users> register(@RequestBody UserDTO us) {
 		return new ResponseEntity<>(  usi.register(us),HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/newsprint")
-	@CrossOrigin
+//	@CrossOrigin
 	public ResponseEntity<List<Sprint>> newSprint(Authentication auth,@RequestBody Sprint sprint) {
 		return new ResponseEntity<>(  usi.newSprint(auth,sprint),HttpStatus.CREATED);
 	}
