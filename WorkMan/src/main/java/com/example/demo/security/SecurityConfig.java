@@ -19,6 +19,8 @@ public class SecurityConfig {
 	.authorizeHttpRequests()
 	.antMatchers(HttpMethod.GET,"/say").permitAll()
 	.antMatchers(HttpMethod.POST,"/user").permitAll()
+	.antMatchers(HttpMethod.POST,"/signIn").permitAll()
+	
 	.anyRequest().authenticated()
 	.and()
 	.formLogin() //  <-- this help in login from browser . It create a login page 

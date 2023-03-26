@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -47,13 +48,16 @@ public class UserServiceImpl {
 		 return users.getSprints();
 	}
 
-	public List<Sprint> assign(Authentication auth, Sprint sprint,String email) {
+	public List<Sprint> assign(Authentication auth, Integer sprintId,String email) throws Exception {
 //		String em=auth.getName();
 		Users users=ur.findByEmail(email).orElseThrow(() -> new BadCredentialsException("User not found by email "+email));
-		
-		users.setSprints(sprint);
+		Optional<Sprint> sprint=sr.findById(sprintId);
+		if(sprint.isPresent()) {
+		users.setSprints(sprint.get());
 		 ur.save(users);
 		 return users.getSprints();
+		}
+		else throw new Exception("Unable to find sprint");
 	}
 
 	public Sprint addTask(Authentication auth, Integer sprintid,Task task) {
